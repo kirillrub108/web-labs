@@ -1,0 +1,19 @@
+{%extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-sm-10">
+        <h1>{{product.product_price.title}}</h1>
+        <img src=" {{product.product_price.image.url}}">
+        <p> {{product.cost_product}},руб.</p>
+        <p> код в прайс-листе {{ product.id}}</p>
+        <p> код в таблице продукт {{product.product_price.id}}</p>
+
+<!-- -->
+<form action="{% url 'cart_add' product.id %}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="Добавить в корзину">
+</form>
+</div>
+{% endblock %}

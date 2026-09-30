@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 align="center">Ваша корзина</h1>
+    <table >
+        <thead>
+        <tr align="center">
+            <th scope="col"> Изображение</th>
+            <th scope="col"> Продукция</th>
+            <th scope="col"> Количество</th>
+            <th scope="col"> Удалить </th>
+            <th scope="col"> Цена позиции</th>
+            <th scope="col"> Итого по позиции</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td align="center">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                {% if product.product_price.image %}
+                                    {{ product.product_price.image.url}}
+                                {% else %}
+                                    {% static 'imges/no_image.png' %}
+                                {% endif %}" width="100" height="100">
+                        </a>
+                    </td>
+                    <td align="center">{{ product.product_price.title}}</td>
+                    <td align="center">{{ item.quantity }}</td>
+                    <td align="center"><a href="{% url 'cart_remove' product.id %}">Удалить</a></td>
+                    <td class="num" align="center">{{item.price}}</td>
+                    <td class="num" align="center">{{item.total_price}}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total" align="center">
+            <td align="center"> Итого</td>
+            <td colspan="4" align="center">{{cart.len}}</td>
+            <td class="num" align="center">{{cart.get_total_price}} </td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url 'product_list' %}" class="button light">Продолжить</a>
+        <p></p>
+        <a href="#" class="button">Оформить заказ</a>
+    </p>
+{% endblock %}

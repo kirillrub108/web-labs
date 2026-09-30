@@ -1,0 +1,18 @@
+# служебное: текст методички, манифест, скрипты снимков, профили Edge/VS Code, зависимости инструментов
+_work/
+
+# venv (по методичке проект Django лежит внутри venv — его оставляем)
+pythonproject/venv/*
+!pythonproject/venv/Django/
+
+# Python / Django
+__pycache__/
+*.py[cod]
+db.sqlite3
+
+# временные файлы Word
+~$*
+
+# Windows
+Thumbs.db
+desktop.ini

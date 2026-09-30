@@ -1,0 +1,12 @@
+{%extends 'base.html' %}
+
+{% block content %}
+
+<form action="." method="POST"> {% csrf_token %}
+    {{form.as_p}}<!--форма отображается в виде абзацев в шаблоне-->
+    <input type='submit' value='Сохранить'/><!-- элемент на форме - кнопка со значением "Сохранить"-->
+
+</form>
+<p>* - поле обязательное для заполнения</p>
+
+{% endblock %}

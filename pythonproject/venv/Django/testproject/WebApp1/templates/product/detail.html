@@ -1,0 +1,35 @@
+{%extends 'base.html' %}
+
+{% block content %}
+
+
+<button type="button" class="btn btn-success" onclick="window.location.href='/create'">Создать</button>
+<!--переход по щелчку по кнопке на страницу product_create.html-->
+<table class="table">
+    <thead>
+        <tr align="center">
+            <th scope="col">Идентификатор в базе </th>
+            <th scope="col">Название </th>
+            <th scope="col" >Описание </th>
+            <th scope="col">Вес</th>
+            <th scope="col">Подробное описание </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for i in my_obj %}
+        <tr align="center">
+            <th>{{i.id}}</th>
+            <td>{{i.title}} </td>
+            <td>{{i.description|truncatechars:9}} </td>
+            <!-- урезание до 9 символов содержимого поля Описание-->
+            <td>{{i.ves}}</td>
+            <td><a href="/detail_product/{{i.id}}">Подробнее о продукте </a></td>
+            <td><a href="/product_edit/{{i.id}}">Редактировать</a></td>
+            <td><a href="/product_delete/{{i.id}}">Удалить </a></td>
+            <!-- передача по гиперссылке идентификатора продукта-->
+        </tr>
+   {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}

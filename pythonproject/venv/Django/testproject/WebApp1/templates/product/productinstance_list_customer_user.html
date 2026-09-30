@@ -1,0 +1,26 @@
+{%extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="col-sm-10">
+        <h1>Ваши заказы, {{user.get_full_name}}!</h1>
+
+        {% if productinstance_list %}
+        <ul>
+            {%for productinst in productinstance_list %}
+
+            <li> {{productinst.product}} {{productinst.due_back}}
+            </li>
+
+            {% endfor %}
+        </ul>
+
+        {% else %}
+
+            <p> У Вас нет заказов</p>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
